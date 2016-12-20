@@ -521,7 +521,7 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowActivated
 
-    public static void Buscar_Facturas() {
+    public synchronized static void Buscar_Facturas() {
         try {
 
             long total = 0;
@@ -559,9 +559,12 @@ public class Principal extends javax.swing.JFrame {
 
                 }
                 data.add(rows);
-                total = total + rs.getLong("total");
+                long totallong = Long.parseLong(rs.getString("total").trim().replace(".", ""));
+                total = total + totallong;
                 otros = otros + rs.getLong("otros");
-                comision = comision + rs.getLong("comision");
+                long comilong = Long.parseLong(rs.getString("comision").trim().replace(".", ""));
+                //System.err.println(comilong);
+                comision = comision + comilong;
             }
             dtm = (DefaultTableModel) jTable1.getModel();
             for (int i = 0; i < data.size(); i++) {
