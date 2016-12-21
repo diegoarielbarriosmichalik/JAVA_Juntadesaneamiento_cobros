@@ -16,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,14 +32,16 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("Junta de Saneamiento");
+        setLocationRelativeTo(null);
+        setTitle("Junta de Saneamiento");
         setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel_otros.setVisible(false);
         jTextField_otros.setVisible(false);
+
+        jt_Nro_de_factura.requestFocus();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -65,17 +69,9 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jt_Nro_de_factura = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        Jt_Nombre = new javax.swing.JTextField();
-        jT_monto = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -90,6 +86,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel_otros = new javax.swing.JLabel();
         jTextField_otros = new javax.swing.JTextField();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jT_monto = new javax.swing.JTextField();
+        Jt_Nombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -108,8 +107,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Factura Numero:");
-
+        jt_Nro_de_factura.setBorder(javax.swing.BorderFactory.createTitledBorder("Número de factura"));
         jt_Nro_de_factura.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jt_Nro_de_facturaKeyPressed(evt);
@@ -133,60 +131,6 @@ public class Principal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Nombre:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Monto a pagar:");
-
-        Jt_Nombre.setEditable(false);
-        Jt_Nombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Jt_Nombre.setForeground(new java.awt.Color(204, 0, 0));
-
-        jT_monto.setEditable(false);
-        jT_monto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jT_monto.setForeground(new java.awt.Color(204, 0, 0));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Fecha de Pago:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jT_monto, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .addComponent(Jt_Nombre)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Jt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jT_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -277,22 +221,44 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser2.setBackground(new java.awt.Color(255, 255, 255));
+        jDateChooser2.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha"));
+
+        jT_monto.setEditable(false);
+        jT_monto.setBackground(new java.awt.Color(255, 255, 255));
+        jT_monto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jT_monto.setForeground(new java.awt.Color(204, 0, 0));
+        jT_monto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jT_monto.setBorder(javax.swing.BorderFactory.createTitledBorder("Monto a pagar"));
+
+        Jt_Nombre.setEditable(false);
+        Jt_Nombre.setBackground(new java.awt.Color(255, 255, 255));
+        Jt_Nombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Jt_Nombre.setForeground(new java.awt.Color(204, 0, 0));
+        Jt_Nombre.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        Jt_Nombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jt_Nro_de_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton1))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(69, 69, 69)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Jt_Nombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jT_monto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(187, 533, Short.MAX_VALUE)
@@ -335,7 +301,6 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
                             .addComponent(jt_Nro_de_factura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -351,8 +316,12 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Jt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jT_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -365,7 +334,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel_otros)
                         .addComponent(jTextField_otros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton4))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, "card2");
@@ -377,41 +346,103 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jt_Nro_de_facturaKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        Date dNow = new Date();
-        Statement ST_Productos;
+    public synchronized static void Buscar() {
         try {
+            Date dNow = new Date();
+            Statement ST_Productos;
+
             ST_Productos = DBConexion.conexion.createStatement();
-            ResultSet RS_Productos = ST_Productos.executeQuery("select nombre, total, id_factura_estado, emitido "
-                    + "from factura "
-                    + "inner join cliente on factura.id_cliente = cliente.id_cliente "
+            ResultSet RS_Productos = ST_Productos.executeQuery("select nombre, total, id_factura_estado, emitido \n"
+                    + "\n"
+                    + "from factura \n"
+                    + "\n"
+                    + "inner join cliente on factura.id_cliente = cliente.id_cliente\n"
+                    + "\n"
                     + " where numero = '" + jt_Nro_de_factura.getText() + "'");
             while (RS_Productos.next()) {
 
-                if (RS_Productos.getInt("id_factura_estado") == 4) {
-                    JOptionPane.showMessageDialog(null, "Factura vencida");
+                if (RS_Productos.getInt("id_factura_estado") == 2) {
+                    JOptionPane.showMessageDialog(null, "La factura se encuentra pagada");
+                    jButton2.setEnabled(false);
+
+//                        String strLong = Long.toString(RS_Productos.getLong("total"));
+//                        String nuevo = getSepararMiles(strLong) + " Gs.";
+//                        Jt_Nombre.setText(RS_Productos.getString("nombre").trim());
+//                        jT_monto.setText(nuevo);
+                    jDateChooser2.setDate(null);
+                    Jt_Nombre.setText("");
+                    jT_monto.setText("");
+
                 } else {
 
-                    if (RS_Productos.getInt("id_factura_estado") == 2) {
-                        JOptionPane.showMessageDialog(this, "La factura se encuentra pagada");
+                    String limite = "";
+
+                    Statement ST_Configuracion = DBConexion.conexion.createStatement();
+                    ResultSet RS_Configuracion = ST_Configuracion.executeQuery("Select * from configuracion");
+                    while (RS_Configuracion.next()) {
+                        limite = RS_Configuracion.getString("limite_pago").trim();
+                    }
+
+                    SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                    Date emitidoDate = formateador.parse(RS_Productos.getString("emitido").trim());
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    Date limiteDate = formatter.parse(limite);
+
+                    if (emitidoDate.compareTo(limiteDate) < 0) {
+                        JOptionPane.showMessageDialog(null, "Factura vencida");
                     } else {
 
-                        String strLong = Long.toString(RS_Productos.getLong("total"));
-                        String nuevo = getSepararMiles(strLong) + " Gs.";
+                        String nuevo = getSepararMiles(RS_Productos.getString("total").trim().replace(".", "")) + " Gs.";
+//                            String nuevo = getSepararMiles(strLong) + " Gs.";
 
                         Jt_Nombre.setText(RS_Productos.getString("nombre").trim());
                         jT_monto.setText(nuevo);
                         jDateChooser2.setDate(dNow);
                         jButton2.setEnabled(true);
-
                     }
-                }
 
+                }
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error "+ex);
+        } catch (SQLException | ParseException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        Buscar();
+
+//
+//        Date dNow = new Date();
+//        Statement ST_Productos;
+//        try {
+//            ST_Productos = DBConexion.conexion.createStatement();
+//            ResultSet RS_Productos = ST_Productos.executeQuery("select nombre, total, id_factura_estado, emitido "
+//                    + "from factura "
+//                    + "inner join cliente on factura.id_cliente = cliente.id_cliente "
+//                    + " where numero = '" + jt_Nro_de_factura.getText() + "'");
+//            while (RS_Productos.next()) {
+//
+//                if (RS_Productos.getInt("id_factura_estado") == 4) {
+//                    JOptionPane.showMessageDialog(null, "Factura vencida");
+//                } else if (RS_Productos.getInt("id_factura_estado") == 2) {
+//                    JOptionPane.showMessageDialog(this, "La factura se encuentra pagada");
+//                } else {
+//
+//                    String nuevo = getSepararMiles(RS_Productos.getString("total").replace(".", "")) + " Gs.";
+//
+//                    Jt_Nombre.setText(RS_Productos.getString("nombre").trim());
+//                    jT_monto.setText(nuevo);
+//                    jDateChooser2.setDate(dNow);
+//                    jButton2.setEnabled(true);
+//
+//                }
+//
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(this, "Error " + ex);
+//        }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -762,65 +793,66 @@ public class Principal extends javax.swing.JFrame {
     private void jt_Nro_de_facturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_Nro_de_facturaKeyPressed
         if ((evt.getKeyCode() == KeyEvent.VK_ENTER)) {
 
-            Date dNow = new Date();
-            Statement ST_Productos;
-            try {
-                ST_Productos = DBConexion.conexion.createStatement();
-                ResultSet RS_Productos = ST_Productos.executeQuery("select nombre, total, id_factura_estado, emitido \n"
-                        + "\n"
-                        + "from factura \n"
-                        + "\n"
-                        + "inner join cliente on factura.id_cliente = cliente.id_cliente\n"
-                        + "\n"
-                        + " where numero = '" + jt_Nro_de_factura.getText() + "'");
-                while (RS_Productos.next()) {
-
-                    if (RS_Productos.getInt("id_factura_estado") == 2) {
-                        JOptionPane.showMessageDialog(this, "La factura se encuentra pagada");
-                        jButton2.setEnabled(false);
-
-//                        String strLong = Long.toString(RS_Productos.getLong("total"));
-//                        String nuevo = getSepararMiles(strLong) + " Gs.";
-//                        Jt_Nombre.setText(RS_Productos.getString("nombre").trim());
-//                        jT_monto.setText(nuevo);
-                        jDateChooser2.setDate(null);
-                        Jt_Nombre.setText("");
-                        jT_monto.setText("");
-
-                    } else {
-
-                        String limite = "";
-
-                        Statement ST_Configuracion = DBConexion.conexion.createStatement();
-                        ResultSet RS_Configuracion = ST_Configuracion.executeQuery("Select * from configuracion");
-                        while (RS_Configuracion.next()) {
-                            limite = RS_Configuracion.getString("limite_pago").trim();
-                        }
-
-                        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-                        Date emitidoDate = formateador.parse(RS_Productos.getString("emitido").trim());
-
-                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                        Date limiteDate = formatter.parse(limite);
-
-                        if (emitidoDate.compareTo(limiteDate) < 0) {
-                            JOptionPane.showMessageDialog(this, "Factura vencida");
-                        } else {
-
-                            String strLong = Long.toString(RS_Productos.getLong("total"));
-                            String nuevo = getSepararMiles(strLong) + " Gs.";
-
-                            Jt_Nombre.setText(RS_Productos.getString("nombre").trim());
-                            jT_monto.setText(nuevo);
-                            jDateChooser2.setDate(dNow);
-                            jButton2.setEnabled(true);
-                        }
-
-                    }
-                }
-            } catch (SQLException | ParseException ex) {
-                JOptionPane.showMessageDialog(this, ex);
-            }
+            Buscar();
+//            Date dNow = new Date();
+//            Statement ST_Productos;
+//            try {
+//                ST_Productos = DBConexion.conexion.createStatement();
+//                ResultSet RS_Productos = ST_Productos.executeQuery("select nombre, total, id_factura_estado, emitido \n"
+//                        + "\n"
+//                        + "from factura \n"
+//                        + "\n"
+//                        + "inner join cliente on factura.id_cliente = cliente.id_cliente\n"
+//                        + "\n"
+//                        + " where numero = '" + jt_Nro_de_factura.getText() + "'");
+//                while (RS_Productos.next()) {
+//
+//                    if (RS_Productos.getInt("id_factura_estado") == 2) {
+//                        JOptionPane.showMessageDialog(this, "La factura se encuentra pagada");
+//                        jButton2.setEnabled(false);
+//
+////                        String strLong = Long.toString(RS_Productos.getLong("total"));
+////                        String nuevo = getSepararMiles(strLong) + " Gs.";
+////                        Jt_Nombre.setText(RS_Productos.getString("nombre").trim());
+////                        jT_monto.setText(nuevo);
+//                        jDateChooser2.setDate(null);
+//                        Jt_Nombre.setText("");
+//                        jT_monto.setText("");
+//
+//                    } else {
+//
+//                        String limite = "";
+//
+//                        Statement ST_Configuracion = DBConexion.conexion.createStatement();
+//                        ResultSet RS_Configuracion = ST_Configuracion.executeQuery("Select * from configuracion");
+//                        while (RS_Configuracion.next()) {
+//                            limite = RS_Configuracion.getString("limite_pago").trim();
+//                        }
+//
+//                        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+//                        Date emitidoDate = formateador.parse(RS_Productos.getString("emitido").trim());
+//
+//                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//                        Date limiteDate = formatter.parse(limite);
+//
+//                        if (emitidoDate.compareTo(limiteDate) < 0) {
+//                            JOptionPane.showMessageDialog(this, "Factura vencida");
+//                        } else {
+//
+//                            String nuevo = getSepararMiles(RS_Productos.getString("total").trim().replace(".", "")) + " Gs.";
+////                            String nuevo = getSepararMiles(strLong) + " Gs.";
+//
+//                            Jt_Nombre.setText(RS_Productos.getString("nombre").trim());
+//                            jT_monto.setText(nuevo);
+//                            jDateChooser2.setDate(dNow);
+//                            jButton2.setEnabled(true);
+//                        }
+//
+//                    }
+//                }
+//            } catch (SQLException | ParseException ex) {
+//                JOptionPane.showMessageDialog(this, ex);
+//            }
         }
 
     }//GEN-LAST:event_jt_Nro_de_facturaKeyPressed
@@ -924,16 +956,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     public static com.toedter.calendar.JDateChooser jDateChooser2;
     public static com.toedter.calendar.JDateChooser jDateChooser3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_otros;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTextField jT_monto;
     public static javax.swing.JTable jTable1;
